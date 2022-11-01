@@ -1,7 +1,6 @@
 package onboarding;
 
 public class Problem2 {
-<<<<<<< HEAD
     public static int findStart(String cryptogram) {
         int start = -1;
         for(int i = 0; i<cryptogram.length()-1; i++) {
@@ -11,6 +10,7 @@ public class Problem2 {
         }
         return start;
     }
+
     public static int findEnd(String cryptogram, int start) {
         int end = start;
         for(int i = start; i<cryptogram.length(); i++) {
@@ -31,10 +31,22 @@ public class Problem2 {
         sb.replace(start, end + 1, "");
         return sb.toString();
     }
-=======
->>>>>>> parent of a0d8bbf (feat : 중복 지점 찾는 기능)
+
     public static String solution(String cryptogram) {
-        String answer = "answer";
-        return answer;
+        while(true) {
+
+            int start = findStart(cryptogram);
+
+            if(start != -1) {
+                int end = findEnd(cryptogram, start);
+
+                String word = decodeWord(cryptogram, start, end);
+                if(word.equals(cryptogram)) {
+                    break;
+                }
+                cryptogram = word;
+            } else break;
+        }
+        return cryptogram;
     }
 }
